@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+    python: 3.8
+  commands:
+    - echo installing dependencies...
+    - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo start pre_build and end
+  build:
+    commands: 
+      - echo Running unit tests with pytest...
+      - pytest --juitxml=reports/results.xml --tb=short  # Generate test et sauvegade dans le fichier resut.xml
+  post_build:
+    commands:
+      - echo Build completed successfully
+  
+  artifacts:
+    files:
+      - "**/*"  # Copier les fichiers
+    base-directory: . # specifier where artifacts are storeed
+    reports:
+      pytest_reports:
+        files:
+          - "reports/results.xml"
+        discard-paths: yes

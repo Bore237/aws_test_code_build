@@ -1,0 +1,2 @@
+pytest
+pytest-cov # Generer les rapport
